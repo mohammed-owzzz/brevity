@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brevity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="bg-default" class="bg-layer bg-active"></div>
+    <div id="bg-loading" class="bg-layer"></div>
+    <div id="bg-success" class="bg-layer"></div>
+
+    <div id="errorModal" class="modal-overlay">
+        <div class="modal">
+            <h2 id="errorTitle">System Error</h2>
+            <p id="errorMsg">An unexpected error occurred.</p>
+            <button onclick="closeModal()">Dismiss</button>
+        </div>
+    </div>
+
+    <div id="heroSection">
+        <svg width="220" height="70" class="main-logo">
+            <defs><linearGradient id="vercelGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#888888"/></linearGradient></defs>
+            <text x="50%" y="60%" dominant-baseline="middle" text-anchor="middle" fill="url(#vercelGrad)" font-family="'Geist', sans-serif" font-weight="700" font-size="3.5rem" letter-spacing="-0.05em">Brevity</text>
+        </svg>
+        <span class="subtitle">High-performance document extraction engine.</span>
+    </div>
+
+    <div id="appContainer">
+        <div class="card fade-element" id="inputCard">
+            <label for="pdfInput" class="custom-file-upload" id="dropzoneLabel">Click to select or drag PDF here</label>
+            <input type="file" id="pdfInput" accept=".pdf" onchange="updateFileName()">
+            <span id="fileName" class="file-name-display"></span>
+            <button id="summarizeBtn" class="fade-element" onclick="summarizeFile()">Initialize AI Engine</button>
+            <div id="loader" class="loader-container fade-element fade-out" style="display: none;">
+                <div class="spinner"></div>
+            </div>
+        </div>
+
+        <div id="resultCard" class="card fade-element fade-out" style="display: none;">
+            <div class="stats-header" id="stats"></div>
+            <div id="summaryText" class="summary-content"></div>
+        </div>
+
+        <div class="nav-container fade-element fade-out" id="navContainer" style="display: none;">
+            <button class="secondary-btn" onclick="resetPage()">Upload Another Document</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+:root {
+    --bg-color: #000000;
+    --card-bg: rgba(10, 10, 10, 0.6);
+    --text-main: #ededed;
+    --text-muted: #888888;
+    --border-color: #333333;
+    --accent: #0070f3;
+}
+
+#resultCard { scrollbar-width: none; -ms-overflow-style: none; }
+#resultCard::-webkit-scrollbar { display: none; }
+
+body {
+    background-color: #000000;
+    color: var(--text-main);
+    font-family: 'Geist', sans-serif;
+    font-weight: 300; 
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 12vh;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+}
+
+.bg-layer {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -1;
+    transition: opacity 2.5s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    background-color: #000000;
+    will-change: opacity;
+}
+
+.bg-active { opacity: 1 !important; filter: brightness(1) !important; transform: scale(1) !important; }
+#bg-default { opacity: 1; }
+
+#bg-loading { 
+    background: radial-gradient(circle at 50% 50%, #1a0026 20%, #000000 100%); 
+    filter: brightness(1.3);
+    transform: scale(1.05);
+}
+
+#bg-success { 
+    background: radial-gradient(circle at 50% 50%, #2d004d 20%, #1a0026 60%, #000000 100%); 
+    filter: brightness(1.4);
+    transform: scale(1.1);
+}
+
+.fade-element {
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 1;
+    transform: translateY(0);
+    will-change: opacity, transform;
+}
+
+.fade-out {
+    opacity: 0 !important;
+    transform: translateY(10px) !important;
+    pointer-events: none;
+}
+
+.modal-overlay { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background: #000000; 
+    z-index: 100; display: flex; justify-content: center; align-items: center; 
+    opacity: 0; visibility: hidden; 
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s;
+    will-change: opacity;
+}
+
+.modal-overlay.active { opacity: 1; visibility: visible; pointer-events: auto; }
+
+.modal { 
+    background: #000000; border: 1px solid var(--border-color); padding: 40px 30px; border-radius: 12px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.5); 
+    transform: scale(0.95); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+}
+
+.modal-overlay.active .modal { transform: scale(1); }
+
+.modal h2 { color: var(--text-main); margin-top: 0; margin-bottom: 15px; font-family: 'Geist', sans-serif; font-weight: 700; font-size: 1.25rem; letter-spacing: -0.05em; }
+.modal p { color: var(--text-muted); font-family: 'Geist', sans-serif; font-size: 1rem; line-height: 1.5; font-weight: 300; letter-spacing: -0.01em; margin-top: 0; margin-bottom: 30px; }
+.modal button { background-color: var(--text-main); color: var(--bg-color); border: none; padding: 14px 24px; border-radius: 8px; cursor: pointer; font-family: 'Geist', sans-serif; font-weight: 400; font-size: 1rem; width: 100%; transition: all 0.4s ease; }
+.modal button:hover { background-color: #ffffff; transform: translateY(-1px); }
+
+#heroSection { 
+    display: flex; flex-direction: column; align-items: center; width: 100%; 
+    margin-bottom: 0;
+}
+
+.main-logo { margin-bottom: 8px; }
+
+.subtitle { 
+    color: var(--text-muted); font-size: 1.1rem; font-weight: 300; letter-spacing: -0.01em; 
+    margin-bottom: 40px; 
+}
+
+#appContainer {
+    display: flex; flex-direction: column; align-items: center;
+    width: 100%; max-width: 600px; min-height: 400px; 
+}
+
+.card { background-color: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: 12px; padding: 30px; width: 100%; box-sizing: border-box; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
+
+#resultCard { max-height: 45vh; overflow-y: auto; overflow-x: hidden; margin-bottom: 20px; } 
+
+input[type="file"] { display: none; }
+
+.custom-file-upload { display: flex; justify-content: center; align-items: center; background-color: transparent; color: var(--text-muted); border: 1px dashed var(--border-color); border-radius: 8px; padding: 30px 20px; cursor: pointer; margin-bottom: 15px; transition: all 0.3s ease; }
+
+.custom-file-upload:hover { border-color: var(--text-main); color: var(--text-main); box-shadow: 0 0 15px rgba(237, 237, 237, 0.15); }
+
+.custom-file-upload.dragover { border-color: var(--accent); background-color: rgba(0, 112, 243, 0.05); color: var(--text-main); }
+
+.file-name-display { display: block; width: 100%; text-align: center; font-size: 0.85rem; color: var(--accent); margin-bottom: 25px; min-height: 1.5em; font-family: 'Geist Mono', monospace; font-weight: 300; }
+
+button { display: flex; justify-content: center; align-items: center; background-color: var(--text-main); color: var(--bg-color); border: none; border-radius: 8px; padding: 14px 24px; height: 48px; font-size: 1rem; font-weight: 400; cursor: pointer; width: 100%; transition: all 0.4s ease; font-family: inherit; box-sizing: border-box; }
+button:hover { background-color: #ffffff; transform: translateY(-1px); }
+
+.nav-container { width: 100%; }
+
+.secondary-btn { background-color: transparent; border: 1px solid var(--border-color); color: var(--text-muted); margin-top: 10px; padding: 20px; border-radius: 12px; transition: all 0.4s ease; height: auto; }
+
+.secondary-btn:hover { background-color: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--border-color); color: var(--text-main); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); }
+
+.loader-container { display: flex; justify-content: center; align-items: center; width: 100%; height: 48px; box-sizing: border-box; background-color: var(--text-main); border-radius: 8px; }
+.spinner { width: 20px; height: 20px; border: 2px solid var(--bg-color); border-top-color: transparent; border-radius: 50%; animation: spin 0.8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.stats-header { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 20px; font-family: 'Geist Mono', monospace; text-transform: uppercase; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; justify-content: space-between; }
+.stats-header span { color: var(--text-main); }
+.summary-content { color: #d1d5db; line-height: 1.7; font-size: 0.95rem; font-weight: 300; font-family: 'Poppins', sans-serif; white-space: pre-wrap; }
