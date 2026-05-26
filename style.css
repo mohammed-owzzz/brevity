@@ -79,6 +79,7 @@ body {
     background: #000000; border: 1px solid var(--border-color); padding: 40px 30px; border-radius: 12px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,0.5); 
     transform: scale(0.95); transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
+    box-sizing: border-box;
 }
 
 .modal-overlay.active .modal { transform: scale(1); }
@@ -97,7 +98,8 @@ body {
 
 .subtitle { 
     color: var(--text-muted); font-size: 1.1rem; font-weight: 300; letter-spacing: -0.01em; 
-    margin-bottom: 40px; 
+    margin-bottom: 40px;
+    text-align: center; 
 }
 
 #appContainer {
